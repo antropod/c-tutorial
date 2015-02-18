@@ -1,20 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct IntArray
+typedef struct
 {
 	int * data;
 	int size;
-};
+} IntArray;
 
-void array_alloc(struct IntArray* ptr, int size)
+void array_alloc(IntArray* ptr, int size)
 {
 	if (!ptr) return;
 	ptr->data = (int*) malloc(sizeof(ptr->data[0]) * size);
 	ptr->size = size;
 }
 
-void array_free(struct IntArray* ptr)
+void array_free(IntArray* ptr)
 {
 	if (!ptr) return;
 	free(ptr->data);
@@ -24,7 +24,7 @@ void array_free(struct IntArray* ptr)
 
 int main()
 {	
-	struct IntArray vector;
+	IntArray vector;
 	array_alloc(&vector, 10);
 	for (int i = 0; i < vector.size; i++) {
 		vector.data[i] = i*2;
